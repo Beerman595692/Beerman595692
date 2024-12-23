@@ -1,6 +1,8 @@
 Currently studying to become an ethical hacker
 
-<a href="https://tryhackme.com/r/p/beerman595692"><img src="https://tryhackme-badges.s3.amazonaws.com/beerman595692.png" alt="Your Image Badge" /></a>
+<a href="https://tryhackme.com/r/p/beerman595692">
+  <img src="https://tryhackme-badges.s3.amazonaws.com/beerman595692.png" alt="Beerman595692" />
+</a>
 ----
 
 # Languages I know
