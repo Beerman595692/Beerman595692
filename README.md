@@ -1,10 +1,10 @@
 Currently studying to become an ethical hacker
 
 <a href="https://tryhackme.com/r/p/beerman595692">
-  <img src="https://tryhackme-badges.s3.amazonaws.com/beerman595692.png" alt="Beerman595692" />
+  <img height="100" src="https://tryhackme-badges.s3.amazonaws.com/beerman595692.png" alt="Beerman595692" />
 </a>
 <a href="https://app.hackthebox.com/profile/2178853">
-  <img height="50" src="https://www.finsmes.com/wp-content/uploads/2023/01/Hack-The-Box.jpeg" />
+  <img height="100" src="https://www.finsmes.com/wp-content/uploads/2023/01/Hack-The-Box.jpeg" />
 </a>
 
 ---
