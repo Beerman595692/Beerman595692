@@ -20,7 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {}
 local plugins = {
 	{"ThePrimeagen/vim-be-good"},
-	{"echasnovski/mini.icons"},
+	{ 'echasnovski/mini.nvim', version = false },
 	{"paulfrische/reddish.nvim", name = "reddish", priority = 1000},
 	{
 		'nvim-telescope/telescope.nvim', tag = '0.1.6',
@@ -41,14 +41,28 @@ local plugins = {
 			--   If not available, we use `mini` as the fallback
 			"rcarriga/nvim-notify",
 		}
+	},
+	{
+		"olrtg/nvim-emmet",
+		config = function()
+			vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+		end,
 	}
 }
-
+	
 require("lazy").setup(plugins, opts)
+require('mini.completion').setup()
+require('mini.files').setup()
+require('mini.icons').setup()
+require('mini.git').setup()
+require('mini.statusline').setup()
+require('mini.tabline').setup()
+
 vim.cmd.colorscheme "reddish"
 local builtin = require("telescope.builtin")
 vim.keymap.set('n','<C-p>', builtin.find_files,{})
 vim.keymap.set('n','<leader>fg', builtin.live_grep,{})
+vim.keymap.set('n','<leader>fi',':lua MiniFiles.open()')
 
 local config = require("nvim-treesitter.configs")
 config.setup({
