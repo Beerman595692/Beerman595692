@@ -2,6 +2,7 @@ vim.cmd("set relativenumber number")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
+
 vim.g.mapleader = " "
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -21,11 +22,12 @@ local opts = {}
 local plugins = {
 	{"ThePrimeagen/vim-be-good"},
 	{ 'echasnovski/mini.nvim', version = false },
-	{"paulfrische/reddish.nvim", name = "reddish", priority = 1000},
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.6',
+		'nvim-telescope/telescope.nvim', tag = '1.1.6',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
+	{"Beerman595692/reddish.nvim", name = "reddish", priority = 1000},
+	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
 	{"nvim-treesitter/nvim-treesitter", build= ":TSUpdate"},
 	{
 		"folke/noice.nvim",
@@ -47,18 +49,35 @@ local plugins = {
 		config = function()
 			vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
 		end,
+	},
+	{
+    		'MeanderingProgrammer/render-markdown.nvim',
+    		dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    		---@module 'render-markdown'
+    		---@type render.md.UserConfig
+    		opts = {},
 	}
 }
 	
 require("lazy").setup(plugins, opts)
+--Mini Setup
+require('mini.ai').setup()
 require('mini.completion').setup()
 require('mini.files').setup()
 require('mini.icons').setup()
 require('mini.git').setup()
 require('mini.statusline').setup()
 require('mini.tabline').setup()
+require('mini.colors').setup()
 
-vim.cmd.colorscheme "reddish"
+require("gruvbox").setup({
+    overrides = {
+        Normal = {fg = "#f6c2a5"}
+    }
+})
+
 local builtin = require("telescope.builtin")
 vim.keymap.set('n','<C-p>', builtin.find_files,{})
 vim.keymap.set('n','<leader>fg', builtin.live_grep,{})
@@ -70,6 +89,7 @@ config.setup({
   highlight = { enable = true },
   indent = { enable = true }
 })
+vim.cmd("colorscheme gruvbox")
 
 require("noice").setup({
   lsp = {
@@ -89,3 +109,10 @@ require("noice").setup({
     lsp_doc_border = false, -- add a border to hover docs and signature help
   },
 })
+
+vim.cmd [[
+  highlight Normal guibg=none
+  highlight NonText guibg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+]]
